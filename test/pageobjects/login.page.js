@@ -19,7 +19,9 @@ class LoginPage extends Page {
 
     get btnSubmit() {
         return $('button[type="submit"]');
+        
     }
+    
 
     /**
      * a method to encapsule automation code to interact with the page
@@ -31,12 +33,26 @@ class LoginPage extends Page {
         await this.btnSubmit.click();
     }
 
-
     async openApp(url) {
         await browser.url(url);
         await expect(browser).toHaveUrlContaining(url)
+    }
 
+    async clickElement(element){
+        await $(element).click()
+    }
 
+    async validateTextElement(element){
+        const ele = await $(element)
+        console.log("elements ", await ele.getText())
+        await expect(ele).toHaveTextContaining(['Travellers:', '2 travellers, 1 room'])
+    }
+
+    async selectRandomLocationGoingTo(){
+        const cities = ["Cluj-Napoca", "Sibiu", "Bucuresti"]
+        const random = Math.floor(Math.random() * cities.length);
+        
+        await $('[data-stid="destination_form_field-menu-input"]').setValue(cities[random])
     }
 }
 
