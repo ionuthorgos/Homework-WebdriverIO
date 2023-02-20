@@ -13,6 +13,7 @@ describe('Do a search after a random city hotel', () => {
     it('Open the url', async () => {
         await LoginPage.openApp(LoginSelectors.url)
     })
+    
     it('Click the accept all cookies button', async () => {
         await HomePage.clickElement(HomeSelectors.accept_all_cookies_button)
     })
@@ -46,7 +47,7 @@ describe('Do a search after a random city hotel', () => {
 // unde se poate parametriza, selector si text in aceeasi functie - done
 // fisiere separate pentru functii generice - done
 // rename fisierele - done
-// selectezi date random din date picker 
+// selectezi date random din date picker - done
 // numar random de adulti
 // numar random de copii
 // dupa faci search - validezi ca fieldurile au datele corecte dupa parametri ceruti mai sus
@@ -56,3 +57,7 @@ describe('Do a search after a random city hotel', () => {
 // faci un cont
 // te loghezi in aplicatie
 // verifici ca esti logat
+
+
+
+// create generalPage

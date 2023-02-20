@@ -5,5 +5,4 @@
     "first_element_going_to_list": "li[data-stid='destination_form_field-result-item']:nth-child(1)",
     "dates_button": "[data-name='date_form_field']",
     "apply_button": "[data-stid='apply-date-picker']"
-
 }
