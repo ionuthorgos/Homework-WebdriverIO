@@ -2,6 +2,8 @@
     "search_button":"[id='search_button']",
     "travellers_button": "[data-stid*='open-room-picker']",
     "going_to_button": "[data-stid='destination_form_field-menu-trigger']",
-    "first_element_going_to_list": "li[data-stid='destination_form_field-result-item']:nth-child(1)"
+    "first_element_going_to_list": "li[data-stid='destination_form_field-result-item']:nth-child(1)",
+    "dates_button": "[data-name='date_form_field']",
+    "apply_button": "[data-stid='apply-date-picker']"
 
 }

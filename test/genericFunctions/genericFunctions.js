@@ -16,4 +16,10 @@ module.exports = class GenericFunctions {
         const ele = await $(element)
         await expect(ele).toHaveTextContaining(expectedResult)
     }
+
+    async generateRandomNumberInRange(min, max) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+      }
 }
