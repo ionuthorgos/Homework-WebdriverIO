@@ -10,6 +10,12 @@ class HotelSearchForm extends GenericFunctions {
         
         await $('[data-stid="destination_form_field-menu-input"]').setValue(cities[random])
     }
+
+    async selectRandomDates(){
+        const firstCalendar = $$("[data-stid='date-picker-month']:nth-child(1) tbody tr button")
+
+        console.log({firstCalendar})
+    }
 }
 
 module.exports = new HotelSearchForm();
