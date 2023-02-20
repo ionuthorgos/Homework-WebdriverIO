@@ -39,6 +39,13 @@ class HotelSearchForm extends GenericFunctions {
         // for (let i = 0; i <= children; i++) {
         //      await $("[aria-label='Increase the number of children in room 1']").click()
        // }
+       
+       return adults
+    }
+
+    async validateTravellersInput(){
+       console.log(this.addRandomTravellers())
+        // await expect().toHaveTextContaining(expectedResult)
     }
 }
 

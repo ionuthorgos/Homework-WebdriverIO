@@ -39,7 +39,9 @@ describe('Do a search after a random city hotel', () => {
     it('Select search button ', async () => {
         await HomePage.clickElement(GeneralSelectors.search_button)
         await browser.pause(3000)
-
+    })
+    it('Validate that the form has the correct data', async () => {
+        await GeneralPage.validateTravellersInput()
     })
 })
 
