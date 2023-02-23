@@ -9,10 +9,32 @@ const HomeSelectors = require("../selectors/homeSelectors.json")
 const LoginSelectors = require("../selectors/loginSelectors.json")
 const GeneralSelectors = require("../selectors/generalSelectors.json")
 
-describe('Do a search after a random city hotel', () => {
+before(async function () {
     it('Open the url', async () => {
         await LoginPage.openApp(LoginSelectors.url)
     })
+    it('Navigate to Sign page', async () => {
+        await LoginPage.clickElement(LoginSelectors.sign_in_button)
+    })
+    it('Select Login button', async () => {
+        await LoginPage.clickElement(LoginSelectors.login_button)
+    })
+    it('Fill in email address', async () => {
+        await LoginPage.fillInputField(LoginSelectors.email_address_input, LoginSelectors.email_address)
+    })
+    it('Fill in the password', async () => {
+        await LoginPage.fillInputField(LoginSelectors.password_input, LoginSelectors.password)
+    })
+    it('Select Sign in form button', async () => {
+        await LoginPage.clickElement(LoginSelectors.login_form)
+    })
+    it('Validate that the user is succesffully logged in', async () => {
+        await HomePage.validateElementContainsText(LoginSelectors.header_profile_name, "ionut")
+    })
+});
+
+describe('Do a search after a random city hotel', () => {
+
     it('Click the accept all cookies button', async () => {
         await HomePage.clickElement(HomeSelectors.accept_all_cookies_button)
     })
@@ -36,14 +58,18 @@ describe('Do a search after a random city hotel', () => {
     it('Click Done button', async () => {
         await GeneralPage.clickElement(GeneralSelectors.done_button)
     })
+    it('Get the values from the fields', async () => {
+        await GeneralPage.clickElement(GeneralSelectors.done_button)
+    })
     it('Select search button ', async () => {
         await HomePage.clickElement(GeneralSelectors.search_button)
-        await browser.pause(3000)
     })
-    it('Validate that the form has the correct data', async () => {
-        await GeneralPage.validateTravellersInput()
-    })
+    // it('Validate that the form has the correct data', async () => {
+    //     await GeneralPage.validateTravellersInput()
+    //     // await browser.pause(5000)
+    // })
 })
+
 
 // primul scenariu
 // clean code - done
@@ -52,15 +78,12 @@ describe('Do a search after a random city hotel', () => {
 // rename fisierele - done
 // selectezi date random din date picker - done
 // numar random de adulti - done
-// numar random de copii - done (dar mai trebuie logica daca vrem sa fie tot automatizat)
+// numar random de copii - done
 // dupa faci search - validezi ca fieldurile au datele corecte dupa parametri ceruti mai sus
 // valideaza parametri de validare in URL
 
-// al 2-lea scenariu
-// faci un cont
-// te loghezi in aplicatie
-// verifici ca esti logat
-
-
-
-// create generalPage
+// al 2-lea scenariu - done
+// faci un cont - done
+// te loghezi in aplicatie - done
+// verifici ca esti logat - done
+ 
