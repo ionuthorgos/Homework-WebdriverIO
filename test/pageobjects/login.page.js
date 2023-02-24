@@ -1,8 +1,10 @@
-const GenericFunctions = require('../genericFunctions/genericFunctions');
+const LoginSelectors = require("../selectors/loginSelectors.json")
+const GenericFunctions = require("../genericFunctions/genericFunctions")
+
 /**
  * sub page containing specific selectors and methods for a specific page
  */
-class LoginPage extends GenericFunctions {
+class LoginPage {
     /**
      * define selectors using getter methods
      */
@@ -17,19 +19,20 @@ class LoginPage extends GenericFunctions {
     get btnSubmit() {
         return $('button[type="submit"]');
     }
-    
+ 
     /**
      * a method to encapsule automation code to interact with the page
      * e.g. to login using username and password
      */
-    async login(username, password) {
-        await this.inputUsername.setValue(username);
-        await this.inputPassword.setValue(password);
-        await this.btnSubmit.click();
+    async login() { 
+        await GenericFunctions.clickElement(LoginSelectors.sign_in_button)
+        await GenericFunctions.clickElement(LoginSelectors.login_button)
+        await GenericFunctions.fillInputField(LoginSelectors.email_address_input,'ionut.horgos@lola.tech')
+        await GenericFunctions.fillInputField(LoginSelectors.password_input,'testLola1234!')
+        await GenericFunctions.clickElement(LoginSelectors.login_form)
     }
-
     
-    async openApp(url) {
+    async openURL(url) {
         await browser.url(url);
         await expect(browser).toHaveUrlContaining(url)
     }
