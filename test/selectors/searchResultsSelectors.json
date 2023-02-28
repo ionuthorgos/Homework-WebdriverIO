@@ -1,4 +1,5 @@
 {
-    "article_list_open" : "li[class='segment segment-result toggle slide custom-class open']",
-    "refunds_on_hotel" : "li[id='article-12600']"
+    "going_to_destination_input" : "[data-stid='destination_form_field-menu-trigger']",
+    "travellers_input": "[data-stid='open-room-picker']"
+                                    
 }

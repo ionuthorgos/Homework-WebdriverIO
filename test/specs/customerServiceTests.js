@@ -1,4 +1,4 @@
-const CustomerServicesSelectors = require("../selectors/customerServicesSelectors.json")
+const CustomerServiceSelectors = require("../selectors/customerServiceSelectors.json")
 const GeneralPage = require('../pageobjects/general.page')
 const GenericFunctions = require('../genericFunctions/genericFunctions')
 
@@ -6,8 +6,8 @@ const GenericFunctions = require('../genericFunctions/genericFunctions')
 describe('Validate Customer Service URL', () => {
     it('Navigate to my trips', async () => {
         await GeneralPage.openURL('https://service.hotels.com/en-us/#/myTrips/')
-        await GenericFunctions.clickElement(CustomerServicesSelectors.refunds_on_hotel)
-        await GenericFunctions.validateAttributeElementExist(CustomerServicesSelectors.article_list_open)
+        await GenericFunctions.clickElement(CustomerServiceSelectors.refunds_on_hotel)
+        await GenericFunctions.validateAttributeElement(CustomerServiceSelectors.firs_article_toggle, "aria-expanded", "true")
     })
 })
 
@@ -26,4 +26,4 @@ describe('Validate Customer Service URL', () => {
 // for filters
 // 1. Guest rating to be as default
 // 2. Price per nigh - as default - min -max
-// 3. Verify  
+// 3. Verify

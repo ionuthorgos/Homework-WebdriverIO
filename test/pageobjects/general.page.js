@@ -1,7 +1,6 @@
 const Collector = require('../utils/collector');
 const GenericFunctions = require('../genericFunctions/genericFunctions')
-const GeneralSelectors = require('../selectors/generalSelectors.json');
-const { assert } = require('internal-slot');
+const { assert } = require('chai');
 /**
  * sub page containing specific selectors and methods for a specific page
  */
@@ -9,6 +8,13 @@ class GeneralPage {
     async openURL(url) {
         await browser.url(url);
         await expect(browser).toHaveUrlContaining(url)
+    }
+
+    async urlParametersInclude(parameter){
+        let url = await browser.getUrl();
+        console.log({url})
+        assert.include(url, parameter, 'This is actually the ERROR message');
+
     }
 
     async selectRandomLocationGoingTo() {
@@ -47,17 +53,18 @@ class GeneralPage {
             }
         }
         this.increaseNumberOfAdults(randomlyNumberOfAdults)
+        console.log("increaseee",   this.increaseNumberOfAdults(randomlyNumberOfAdults))
         Collector.collect("travellers", children + randomlyNumberOfAdults + 1);
     }
     // Increase the number of Adults
     async increaseNumberOfAdults(numberAdults) {
-        for (let i = 1; i <= numberAdults; i++) {
+        for (let i = 1; i < numberAdults; i++) {
             await $("button[class*='input-touch-target']:nth-child(3)").click()
         }
     }
     // Increase the number of Children
     async increaseNumberOfChildren(numberChildren) {
-        for (let i = 0; i <= numberChildren; i++) {
+        for (let i = 0; i < numberChildren; i++) {
             await $("[aria-label='Increase the number of children in room 1']").click()
         }
     }

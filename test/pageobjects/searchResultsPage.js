@@ -3,17 +3,14 @@
  */
 const Collector = require('../utils/collector');
 const { assert } = require('chai');
-const GeneralSelectors = require("../selectors/generalSelectors.json")
 
 class SearchResultsPage {
-    async validateGoingToField(expectedText) {
+    async validateGoingToField(selector, expectedText) {
         if (expectedText.includes('$Var.')) {
             let collectedText = await Collector.getValueCollectorMap(expectedText.slice(5));
             expectedText = collectedText;
         }
-        let actualText = (await $(GeneralSelectors.going_to_button).getText()).split("\n")[1];
-        console.log({expectedText})
-        console.log({actualText})
+        let actualText = (await $(selector).getText()).split("\n")[1];
         assert.include(actualText, expectedText, 'This is actually the ERROR message');
     }
 
@@ -22,9 +19,9 @@ class SearchResultsPage {
             let collectedText = await Collector.getValueCollectorMap(expectedText.slice(5));
             expectedText = collectedText;
         }
-        console.log({expectedText})
-        let actualText = (await $("[data-stid*='open-room-picker']").getText()).split("\n")[2]       
-        console.log({actualText})
+        console.log({ expectedText })
+        let actualText = (await $("[data-stid*='open-room-picker']").getText()).split("\n")[2]
+        console.log({ actualText })
 
         assert.include(actualText, expectedText, 'This is actually the ERROR message');
 

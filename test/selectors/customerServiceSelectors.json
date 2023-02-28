@@ -1,0 +1,5 @@
+{
+    "article_list_open": "[id='article-20776']",
+    "refunds_on_hotel": "li[id='article-12600']",
+    "firs_article_toggle": "li[class*='open']:nth-child(1) article"
+}

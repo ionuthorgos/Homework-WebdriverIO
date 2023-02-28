@@ -3,6 +3,7 @@
 * that is shared across all page objects
 */
 const Collector = require('../utils/collector');
+const { assert } = require('chai');
 
 class GenericFunctions {
   /**
@@ -15,23 +16,19 @@ class GenericFunctions {
     await $(element).click()
   }
 
-  async waitToBeDisplayed(element) {
-    await $(element).waitForDisplayed()
-  }
-
   async fillInputField(element, value) {
     await $(element).waitForDisplayed()
     await $(element).setValue(value)
   }
 
-  async validateTextElement(element, expectedResult) {
-    const ele = await $(element)
-    await expect(ele).toHaveTextContaining(expectedResult)
-  }
-
-  async validateAttributeElementExist(element) {
-    const ele = await $(element)
-    await expect(ele).toExist()
+  async validateAttributeElement(selector, expectedAttribute, expectedValue) {
+    let attributeValue = await $(selector).getAttribute(expectedAttribute);
+    console.log({attributeValue})
+    console.log({expectedValue})
+    assert.isTrue(
+      attributeValue.includes(expectedValue),
+      `The ${expectedAttribute} attribute does not include ${expectedValue}`
+    );
   }
 
   async generateRandomNumberInRange(min, max) {
@@ -62,52 +59,47 @@ class GenericFunctions {
         );
     }
   }
-  async validateIfElementIsExpectedState(selector, expectedState) {
+  async waitForElementToBeExpectedState(selector, expectedState) {
 
     switch (expectedState) {
-      case 'visible':
-      case 'displayed':
-        await expect($(selector)).toBeDisplayedInViewport();
+      case 'be displayed':
+      case 'be visible':
+        await $(selector).waitForDisplayed();
         break;
-      case 'not displayed':
-      case 'not visible':
-        await expect($(selector)).not.toBeDisplayedInViewport();
+      case 'not be displayed':
+      case 'not be visible':
+        await $(selector).waitForDisplayed({ reverse: true });
+        // 'reverse: true' waits for the element to disappear
         break;
-      case 'present':
-      case 'existing':
-        await expect($(selector)).toBePresent();
+      case 'be present':
+      case 'exist':
+        await $(selector).waitForExist();
         break;
-      case 'not present':
-      case 'not existing':
-        await expect($(selector)).not.toBePresent();
+      case 'not be present':
+      case 'not exist':
+        await $(selector).waitForExist({ reverse: true });
         break;
-      case 'clickable':
-        await expect($(selector)).toBeClickable();
+      case 'be clickable':
+        await $(selector).waitForClickable();
         break;
-      case 'not clickable':
-        await expect($(selector)).not.toBeClickable();
+      case 'not be clickable':
+        await $(selector).waitForClickable({ reverse: true });
         break;
       case 'enabled':
-        await expect($(selector)).toBeEnabled();
+        await $(selector).waitForEnabled();
         break;
       case 'not enabled':
-        await expect($(selector)).not.toBeEnabled();
-        break;
-      case 'selected':
-        await expect($(selector)).toBeSelected();
-        break;
-      case 'not selected':
-        await expect($(selector)).not.toBeSelected();
+        await $(selector).waitForEnabled({ reverse: true });
         break;
       case 'focused':
-        await expect($(selector)).toBeFocused();
+        await $(selector).isFocused();
         break;
       case 'not focused':
-        await expect($(selector)).not.toBeFocused();
+        await $(selector).isFocused({ reverse: true });
         break;
       default:
         throw new Error(
-          'Wrong expected state provided. Only use the following: displayed, not displayed, visible, not visible, present, not present, existing, not existing, clickable, not clickable, enabled, not enabled, selected, not selected.'
+          'Wrong expected state provided. Only use the following: be displayed, not be displayed, be visible, not be visible, be present, not be present, exist, not exist, be clickable, not be clickable, be enabled, not be enabled.'
         );
     }
   }
