@@ -31,11 +31,6 @@ class LoginPage {
         await GenericFunctions.fillInputField(LoginSelectors.password_input,'testLola1234!')
         await GenericFunctions.clickElement(LoginSelectors.login_form)
     }
-    
-    async openURL(url) {
-        await browser.url(url);
-        await expect(browser).toHaveUrlContaining(url)
-    }
 }
 
 module.exports = new LoginPage();

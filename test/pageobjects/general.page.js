@@ -1,16 +1,21 @@
 const Collector = require('../utils/collector');
 const GenericFunctions = require('../genericFunctions/genericFunctions')
-const GeneralSelectors = require('../selectors/generalSelectors.json')
-
+const GeneralSelectors = require('../selectors/generalSelectors.json');
+const { assert } = require('internal-slot');
 /**
  * sub page containing specific selectors and methods for a specific page
  */
 class GeneralPage {
+    async openURL(url) {
+        await browser.url(url);
+        await expect(browser).toHaveUrlContaining(url)
+    }
 
     async selectRandomLocationGoingTo() {
-        const cities = ["Cluj-Napoca", "Sibiu", "Bucuresti"]
+        const cities = ["Cluj-Napoca", "Sibiu", "Bucharest"]
         const random = Math.floor(Math.random() * cities.length);
         await $('[data-stid="destination_form_field-menu-input"]').setValue(cities[random])
+        Collector.collect("goingTo", cities[random]);
     }
 
     async selectRandomDatesFromDatePicker() {
@@ -33,31 +38,28 @@ class GeneralPage {
         let randomlyNumberOfAdults = await GenericFunctions.generateRandomNumberInRange(1, maxNumberOfAdults)
         // Select minus button for adults to start booking travellers from 1 adult
         await $("button[class*='input-touch-target']:nth-child(1)").click()
-        console.log("children in afara if-ului la inceput", children)
-        console.log("numarul maxim de adultis", maxNumberOfAdults)
-        console.log("numarul random de adulti", randomlyNumberOfAdults)
-
         // Add a random number of children, and fill in their ages with random age
-        if (children > 0) {
+        if (children >= 1) {
+            this.increaseNumberOfChildren(children);
             for (let i = 0; i < children; i++) {
-                await $("[aria-label='Increase the number of children in room 1']").click()
-            }
-            for (let j = 0; j < children; j++) {
                 let generateRandomChildAge = await GenericFunctions.generateRandomNumberInRange(1, 17)
-                console.log({ generateRandomChildAge })
-                await $(`[id="age-traveler_selector_children_age_selector-0-${j}"] option[value="${generateRandomChildAge}"]`).click()
+                await $(`[id="age-traveler_selector_children_age_selector-0-${i}"] option[value="${generateRandomChildAge}"]`).click()
             }
         }
-        // Add a random number of Adults 
-        for (let i = 1; i <= randomlyNumberOfAdults; i++) {
+        this.increaseNumberOfAdults(randomlyNumberOfAdults)
+        Collector.collect("travellers", children + randomlyNumberOfAdults + 1);
+    }
+    // Increase the number of Adults
+    async increaseNumberOfAdults(numberAdults) {
+        for (let i = 1; i <= numberAdults; i++) {
             await $("button[class*='input-touch-target']:nth-child(3)").click()
         }
-        Collector.collect("test", children + randomlyNumberOfAdults +1);
     }
-
-    async validateTravellersInput() {
-        let collectedText = await Collector.getValueCollectorMap('test');
-        await GenericFunctions.validateTextElement(GeneralSelectors.travellers_button, collectedText)
+    // Increase the number of Children
+    async increaseNumberOfChildren(numberChildren) {
+        for (let i = 0; i <= numberChildren; i++) {
+            await $("[aria-label='Increase the number of children in room 1']").click()
+        }
     }
 }
 

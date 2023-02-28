@@ -25,6 +25,15 @@ exports.config = {
     specs: [
         './test/specs/**/*.js'
     ],
+    // define specific suites
+    suites: {
+        customerService: [
+            './test/specs/customerServiceTests.js',
+        ],
+        homeTests: [
+            './test/specs/homePageTests.js'
+        ]
+    },
     // Patterns to exclude.
     exclude: [
         // 'path/to/excluded/files'
