@@ -91,32 +91,33 @@ class GenericFunctions {
     console.log({ expectedTextArray })
   }
 
-  async calculateTheDiscountFromARandomDestination() {
+  async calculateTheDiscount() {
     const cards = await $$('[data-stid="lodging-card-responsive"]');
-    let cardIndexes = []
+    const cardIndexesWithDiscounts = []
     // regex
     const extractPriceIs = /The price is €(\d+)/;
     const extractPriceWas = /The price was €(\d+)/;
     const extractDiscount = /(\d+)% off/;
 
     for (let i = 0; i < cards.length; i++) {
-      let cardText = await cards[i].getText()
+      const cardText = await cards[i].getText()
       if (cardText.includes("% off")) {
-        cardIndexes.push(i)
+        cardIndexesWithDiscounts.push(i)
       }
     }
-    
-    const randomIndex = Math.floor(Math.random() * cardIndexes.length)
-    const finalCard = await cards[cardIndexes[randomIndex]].getText()
 
-    const oldPrice = finalCard.match(extractPriceWas)
-    const newPrice = finalCard.match(extractPriceIs)
-    const discount = finalCard.match(extractDiscount)
+    const randomIndex = Math.floor(Math.random() * cardIndexesWithDiscounts.length)
+    const randomCardText = await cards[cardIndexesWithDiscounts[randomIndex]].getText()
+    console.log({randomCardText})
 
-    const discountPercentage = Math.ceil(((oldPrice[1] - newPrice[1]) / oldPrice[1]) * 100)
+    const oldPrice = randomCardText.match(extractPriceWas)
+    const newPrice = randomCardText.match(extractPriceIs)
+    const discountPercentage = randomCardText.match(extractDiscount)[1]
+    console.log({discountPercentage})
 
-    assert.isTrue(discount[1] == discountPercentage);
-    /// xpath
+    const calculatedDiscountPercentage = Math.ceil(((oldPrice[1] - newPrice[1]) / oldPrice[1]) * 100)
+
+    assert.isTrue(discountPercentage == calculatedDiscountPercentage);
   }
 
   async waitUntilElementTextChanges(element, expectedText) {

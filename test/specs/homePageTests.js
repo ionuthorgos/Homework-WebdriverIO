@@ -97,7 +97,7 @@ describe('Select a random Destination from the default list', () => {
             })
 
     it('Validate the discount from a random Destination', async () => {
-        await GenericFunctions.calculateTheDiscountFromARandomDestination()
+        await GenericFunctions.calculateTheDiscount()
     })
 })
 
