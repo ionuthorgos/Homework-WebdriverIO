@@ -1,5 +1,5 @@
 {
-    "article_list_open": "[id='article-20776']",
+    "first_article_toggle": "[data-article-id='20776']",
     "refunds_on_hotel": "li[id='article-12600']",
-    "firs_article_toggle": "li[class*='open']:nth-child(1) article"
+    "first_article_expanded": "li[class*='open']:nth-child(1) article"
 }

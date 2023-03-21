@@ -1,5 +1,9 @@
 {
-    "going_to_destination_input" : "[data-stid='destination_form_field-menu-trigger']",
-    "travellers_input": "[data-stid='open-room-picker']"
+   "going_to_destination_input2" : "[data-stid='destination_form_field-menu-trigger']",
+    "going_to_destination_input" : "[data-stid='hotels-destination-menu-trigger']",
+    "travellers_input": "[data-stid='open-room-picker']",
+    "input_radio_any": "[aria-label='Any']",
+    "card_responses": "[data-stid='lodging-card-responsive']",
+    "card_hotel_details": "[data-test-id='price-summary-message-line'] div div"
                                     
 }

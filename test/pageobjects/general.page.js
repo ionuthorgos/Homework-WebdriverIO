@@ -10,13 +10,6 @@ class GeneralPage {
         await expect(browser).toHaveUrlContaining(url)
     }
 
-    async urlParametersInclude(parameter){
-        let url = await browser.getUrl();
-        console.log({url})
-        assert.include(url, parameter, 'This is actually the ERROR message');
-
-    }
-
     async selectRandomLocationGoingTo() {
         const cities = ["Cluj-Napoca", "Sibiu", "Bucharest"]
         const random = Math.floor(Math.random() * cities.length);
@@ -24,41 +17,50 @@ class GeneralPage {
         Collector.collect("goingTo", cities[random]);
     }
 
+    // add validation when the number from datepicker is disabled
     async selectRandomDatesFromDatePicker() {
         const firstCalendarList = await $$("[data-stid='date-picker-month']:nth-child(1) tbody tr button")
         // Select from the first table calendar a random index
         let randomIndexFirstDate = await GenericFunctions.generateRandomNumberInRange(1, firstCalendarList.length);
+        console.log("first index generated",randomIndexFirstDate)
         let randomIndexSecondDate = await GenericFunctions.generateRandomNumberInRange(1, firstCalendarList.length);
-
-        while (randomIndexFirstDate >= randomIndexSecondDate) {
-            randomIndexSecondDate = await GenericFunctions.generateRandomNumberInRange(1, firstCalendarList.length
-            );
+        let firstDateStatus = await $(`[data-stid='date-picker-month']:nth-child(1) tbody tr [data-day="${randomIndexFirstDate}"]`).isEnabled()
+        console.log("first date status", firstDateStatus)
+        while (!firstDateStatus) {
+            randomIndexFirstDate = await GenericFunctions.generateRandomNumberInRange(1, firstCalendarList.length);
+            firstDateStatus = await $(`[data-stid='date-picker-month']:nth-child(1) tbody tr [data-day="${randomIndexFirstDate}"]`).isEnabled()
         }
+            while (randomIndexFirstDate >= randomIndexSecondDate) {
+                randomIndexSecondDate = await GenericFunctions.generateRandomNumberInRange(1, firstCalendarList.length);
+            }
+        
         await $(`[data-stid='date-picker-month']:nth-child(1) tbody tr [data-day="${randomIndexFirstDate}"]`).click()
         await $(`[data-stid='date-picker-month']:nth-child(1) tbody tr [data-day="${randomIndexSecondDate}"]`).click()
     }
 
     async addRandomTravellers() {
-        let children = await GenericFunctions.generateRandomNumberInRange(0, 6)
-        let maxNumberOfAdults = 13 - children
-        let randomlyNumberOfAdults = await GenericFunctions.generateRandomNumberInRange(1, maxNumberOfAdults)
         // Select minus button for adults to start booking travellers from 1 adult
         await $("button[class*='input-touch-target']:nth-child(1)").click()
+        let children = await GenericFunctions.generateRandomNumberInRange(0, 6)
+        let maxNumberOfAdults = 13 - children
+        let randomlyNumberOfAdults = await GenericFunctions.generateRandomNumberInRange(0, maxNumberOfAdults)
+
         // Add a random number of children, and fill in their ages with random age
-        if (children >= 1) {
-            this.increaseNumberOfChildren(children);
-            for (let i = 0; i < children; i++) {
+        if (children > 0) {
+            await this.increaseNumberOfChildren(children)
+            for (let j = 0; j < children; j++) {
                 let generateRandomChildAge = await GenericFunctions.generateRandomNumberInRange(1, 17)
-                await $(`[id="age-traveler_selector_children_age_selector-0-${i}"] option[value="${generateRandomChildAge}"]`).click()
+                await $(`[id="age-traveler_selector_children_age_selector-0-${j}"] option[value="${generateRandomChildAge}"]`).click()
             }
         }
-        this.increaseNumberOfAdults(randomlyNumberOfAdults)
-        console.log("increaseee",   this.increaseNumberOfAdults(randomlyNumberOfAdults))
-        Collector.collect("travellers", children + randomlyNumberOfAdults + 1);
+
+        await this.increaseNumberOfAdults(randomlyNumberOfAdults)
+        let totalTravellers = (children + randomlyNumberOfAdults) + 1
+        Collector.collect("travellers", totalTravellers)
     }
     // Increase the number of Adults
     async increaseNumberOfAdults(numberAdults) {
-        for (let i = 1; i < numberAdults; i++) {
+        for (let i = 0; i < numberAdults; i++) {
             await $("button[class*='input-touch-target']:nth-child(3)").click()
         }
     }

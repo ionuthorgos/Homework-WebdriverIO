@@ -10,10 +10,28 @@ class GenericFunctions {
   * Opens a sub page of the page
   * @param path path of the sub page (e.g. /path/to/page.html)
   */
+  async urlParametersInclude(parameter) {
+    let url = await browser.getUrl();
+    console.log({ url })
+    assert.include(url, parameter, 'This is actually the ERROR message');
+  }
+
+  async validateCurrentUrlMatchesUrl(url) {
+    assert.equal(await browser.getUrl(), url);
+  }
 
   async clickElement(element) {
     await $(element).waitForClickable()
     await $(element).click()
+  }
+
+  async switchWindow(element) {
+    await browser.switchWindow(element)
+    //await browser.switchWindow('google.com')
+  }
+
+  async newWindow(element) {
+    await browser.newWindow(element)
   }
 
   async fillInputField(element, value) {
@@ -23,8 +41,8 @@ class GenericFunctions {
 
   async validateAttributeElement(selector, expectedAttribute, expectedValue) {
     let attributeValue = await $(selector).getAttribute(expectedAttribute);
-    console.log({attributeValue})
-    console.log({expectedValue})
+    console.log({ attributeValue })
+    console.log({ expectedValue })
     assert.isTrue(
       attributeValue.includes(expectedValue),
       `The ${expectedAttribute} attribute does not include ${expectedValue}`
@@ -59,6 +77,70 @@ class GenericFunctions {
         );
     }
   }
+
+  async validateListIsSortedAscending(element) {
+    let actualTextArray = [];
+    let expectedTextArray = [];
+    const selectorArray = await $$(element)
+
+    for await (const individualText of selectorArray) {
+      actualTextArray.push(await individualText.getText());
+    }
+
+    expectedTextArray = [...actualTextArray].sort()
+    console.log({ expectedTextArray })
+  }
+
+  async calculateTheDiscountFromARandomDestination() {
+    const cards = await $$('[data-stid="lodging-card-responsive"]');
+    let cardIndexes = []
+    // regex
+    const extractPriceIs = /The price is €(\d+)/;
+    const extractPriceWas = /The price was €(\d+)/;
+    const extractDiscount = /(\d+)% off/;
+
+    for (let i = 0; i < cards.length; i++) {
+      let cardText = await cards[i].getText()
+      if (cardText.includes("% off")) {
+        cardIndexes.push(i)
+      }
+    }
+    
+    const randomIndex = Math.floor(Math.random() * cardIndexes.length)
+    const finalCard = await cards[cardIndexes[randomIndex]].getText()
+
+    const oldPrice = finalCard.match(extractPriceWas)
+    const newPrice = finalCard.match(extractPriceIs)
+    const discount = finalCard.match(extractDiscount)
+
+    const discountPercentage = Math.ceil(((oldPrice[1] - newPrice[1]) / oldPrice[1]) * 100)
+
+    assert.isTrue(discount[1] == discountPercentage);
+    /// xpath
+  }
+
+  async waitUntilElementTextChanges(element, expectedText) {
+    await browser.waitUntil(
+      async () => (await $(element).getText()) === expectedText,
+      {
+        timeout: 10000,
+        timeoutMsg: `The text on the ${element} did not change after 10 seconds`,
+        interval: 1000,
+      }
+    );
+  }
+
+  async storeTextOfElementsFromList(element, key) {
+    let actualTextArray = [];
+
+    let selectorArray = await $$(element);
+    for await (const individualText of selectorArray) {
+      actualTextArray.push(await individualText.getText());
+    }
+    console.log({ actualTextArray })
+    await Collector.collect(key, actualTextArray);
+  }
+
   async waitForElementToBeExpectedState(selector, expectedState) {
 
     switch (expectedState) {
@@ -97,15 +179,17 @@ class GenericFunctions {
       case 'not focused':
         await $(selector).isFocused({ reverse: true });
         break;
+      case 'is existing':
+        await $(selector).isExisting();
+        break;
+      case 'not existing':
+        await $(selector).isExisting({ reverse: true });
+        break;
       default:
         throw new Error(
           'Wrong expected state provided. Only use the following: be displayed, not be displayed, be visible, not be visible, be present, not be present, exist, not exist, be clickable, not be clickable, be enabled, not be enabled.'
         );
     }
-  }
-
-  async validateCurrentUrlMatchesUrl(url) {
-    assert.equal(await browser.getUrl(), url);
   }
 }
 module.exports = new GenericFunctions();

@@ -1,5 +1,6 @@
 {
     "url":"https://www.hotels.com/?locale=en_IE&pos=HCOM_EMEA&siteid=300000025",
+    "home_url": "http://google.com",
     "sign_in_button": "div[id='gc-custom-header-nav-bar-acct-menu']",
     "login_button": "[data-stid='link-header-account-signin']",
     "email_address_input": "[id='loginFormEmailInput']",

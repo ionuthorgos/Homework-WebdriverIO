@@ -152,7 +152,8 @@ exports.config = {
     // See the full list at http://mochajs.org/
     mochaOpts: {
         ui: 'bdd',
-        timeout: 60000
+        timeout: 60000,
+        bail: true
     },
     //
     // =====
@@ -232,10 +233,15 @@ exports.config = {
      */
     // beforeHook: function (test, context) {
     // },
-    /**
-     * Hook that gets executed _after_ a hook within the suite starts (e.g. runs after calling
-     * afterEach in Mocha)
-     */
+  
+      afterHook: async function(){
+        await browser.reloadSession()
+      }
+
+    //   beforeScenario: async function (world, context) {
+    //     await browser.maximizeWindow();
+    //   },
+     
     // afterHook: function (test, context, { error, result, duration, passed, retries }) {
     // },
     /**

@@ -7,5 +7,6 @@
     "apply_button": "[data-stid='apply-date-picker']",
     "done_button": "[id='traveler_selector_done_button']",
     "loading_animation": "[class='uitk-loader']",
-    "travellers_container": "div[class*='uitk-menu-container-over-trigger']"
+    "travellers_container": "div[class*='uitk-menu-container-over-trigger']",
+    "impacts_sort_order_link": "[data-stid='results-header-messages'] a"
 }
