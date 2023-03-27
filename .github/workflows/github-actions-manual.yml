@@ -12,7 +12,7 @@ on:
       tag:
         description: 'The tag of the test or tests which you want to run'
         required: true
-        default: '@atm-regression'
+        default: '@homework'
       browser:
         description: 'Name of the browser from browser-capabilities-sauce-labs.js'
         required: true
