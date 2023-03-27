@@ -8,7 +8,6 @@ const HomeSelectors = require("../selectors/homeSelectors.json")
 const LoginSelectors = require("../selectors/loginSelectors.json")
 const GeneralSelectors = require("../selectors/generalSelectors.json")
 const SearchResultsSelectors = require("../selectors/searchResultsSelectors.json")
-const { Browser } = require('puppeteer-core')
 
 before(async function () {
     it('Open the url', async () => {
@@ -98,6 +97,7 @@ describe('Select a random Destination from the default list', () => {
 
     it('Validate the discount from a random Destination', async () => {
         await GenericFunctions.calculateTheDiscount()
+        await browser.pause(30000);
     })
 })
 

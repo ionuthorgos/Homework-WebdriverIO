@@ -90,34 +90,38 @@ class GenericFunctions {
     expectedTextArray = [...actualTextArray].sort()
     console.log({ expectedTextArray })
   }
-
+  // improve the names
   async calculateTheDiscount() {
-    const cards = await $$('[data-stid="lodging-card-responsive"]');
+    const hotelCards = await $$('[data-stid="lodging-card-responsive"]');
     const cardIndexesWithDiscounts = []
-    // regex
-    const extractPriceIs = /The price is €(\d+)/;
-    const extractPriceWas = /The price was €(\d+)/;
+    // regex - 
+    const extractDiscountedPrice = /The price is €(\d+)/;
+    const extractOriginalPrice = /The price was €(\d+)/;
     const extractDiscount = /(\d+)% off/;
 
-    for (let i = 0; i < cards.length; i++) {
-      const cardText = await cards[i].getText()
+    // let comment
+    for (let i = 0; i < hotelCards.length; i++) {
+      const cardText = await hotelCards[i].getText()
       if (cardText.includes("% off")) {
         cardIndexesWithDiscounts.push(i)
       }
     }
 
     const randomIndex = Math.floor(Math.random() * cardIndexesWithDiscounts.length)
-    const randomCardText = await cards[cardIndexesWithDiscounts[randomIndex]].getText()
-    console.log({randomCardText})
 
-    const oldPrice = randomCardText.match(extractPriceWas)
-    const newPrice = randomCardText.match(extractPriceIs)
-    const discountPercentage = randomCardText.match(extractDiscount)[1]
-    console.log({discountPercentage})
+    //  add comment
+    const randomIndexOfHotelCardWithDiscount = cardIndexesWithDiscounts[randomIndex]
+    const randomCardText = await hotelCards[randomIndexOfHotelCardWithDiscount].getText()
 
-    const calculatedDiscountPercentage = Math.ceil(((oldPrice[1] - newPrice[1]) / oldPrice[1]) * 100)
+    // extract prices and discount
+    const originalPrice = randomCardText.match(extractOriginalPrice)
+    const discountedPrice = randomCardText.match(extractDiscountedPrice)
+    const actualDiscountPercentage = randomCardText.match(extractDiscount)[1]
 
-    assert.isTrue(discountPercentage == calculatedDiscountPercentage);
+    const expectedDiscountPercentage = Math.round(((originalPrice[1] - discountedPrice[1]) / originalPrice[1]) * 100)
+    // originalPrice * actualDiscountPercentage = discountedPrice
+
+    assert.equal(actualDiscountPercentage, expectedDiscountPercentage);
   }
 
   async waitUntilElementTextChanges(element, expectedText) {

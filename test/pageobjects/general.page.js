@@ -11,7 +11,7 @@ class GeneralPage {
     }
 
     async selectRandomLocationGoingTo() {
-        const cities = ["Cluj-Napoca", "Sibiu", "Bucharest"]
+        const cities = ["Cluj-Napoca", "Bucharest"]
         const random = Math.floor(Math.random() * cities.length);
         await $('[data-stid="destination_form_field-menu-input"]').setValue(cities[random])
         Collector.collect("goingTo", cities[random]);
