@@ -2,6 +2,8 @@
 //   chrome: { version: '110.0.5481.77' }, // https://chromedriver.chromium.org/
 //   firefox: { version: '0.30.0' }, // https://github.com/mozilla/geckodriver/releases
 // };
+const browsersCapabilities = require('./browser-capabilities-sauce-labs');
+
 exports.config = {
   //
   // ====================
@@ -62,27 +64,27 @@ exports.config = {
   // Sauce Labs platform configurator - a great tool to configure your capabilities:
   // https://saucelabs.com/platform/platform-configurator
   //
-  // capabilities: [browsersCapabilities[firefox]],
-  capabilities: [{
+ capabilities: [browsersCapabilities[chrome]],
+//   capabilities: [{
     
-    // maxInstances can get overwritten per capability. So if you have an in-house Selenium
-    // grid with only 5 firefox instances available you can make sure that not more than
-    // 5 instances get started at a time.
-    maxInstances: 5,
-    //
-    browserName: 'chrome',
-    acceptInsecureCerts: true,
-    // If outputDir is provided WebdriverIO can capture driver session logs
-    // it is possible to configure which logTypes to include/exclude.
-    // excludeDriverLogs: ['*'], // pass '*' to exclude all driver session logs
-    // excludeDriverLogs: ['bugreport', 'server'],
-    // 'goog:chromeOptions':{
-    //     args: ['--headless', '--disable-gpu', '--disable-dev-shm-usage']
-    // }
-    // 'goog:chromeOptions':{
-    //     args: ['--disable-gpu', '--disable-dev-shm-usage']
-    // }
-}],
+//     // maxInstances can get overwritten per capability. So if you have an in-house Selenium
+//     // grid with only 5 firefox instances available you can make sure that not more than
+//     // 5 instances get started at a time.
+//     maxInstances: 5,
+//     //
+//     browserName: 'chrome',
+//     acceptInsecureCerts: true,
+//     // If outputDir is provided WebdriverIO can capture driver session logs
+//     // it is possible to configure which logTypes to include/exclude.
+//     // excludeDriverLogs: ['*'], // pass '*' to exclude all driver session logs
+//     // excludeDriverLogs: ['bugreport', 'server'],
+//     // 'goog:chromeOptions':{
+//     //     args: ['--headless', '--disable-gpu', '--disable-dev-shm-usage']
+//     // }
+//     // 'goog:chromeOptions':{
+//     //     args: ['--disable-gpu', '--disable-dev-shm-usage']
+//     // }
+// }],
   //
   // ===================
   // Test Configurations
