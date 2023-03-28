@@ -5,9 +5,10 @@ env:
   SAUCE_ACCESS_KEY: ${{ secrets.SAUCE_ACCESS_KEY }}
 
 jobs:
+build:
  run-automation-tests:
     needs: [start-runner]
-    runs-on: ${{ needs.start-runner.outputs.label }} # run the job on the newly created runner
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
 
