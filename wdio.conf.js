@@ -27,9 +27,9 @@ exports.config = {
     ],
     // define specific suites
     suites: {
-        // customerService: [
-        //     './test/specs/customerServiceTests.js',
-        // ],
+        customerService: [
+            './test/specs/customerServiceTests.js',
+        ],
         homeTests: [
             './test/specs/homePageTests.js'
         ]
@@ -73,10 +73,9 @@ exports.config = {
         // it is possible to configure which logTypes to include/exclude.
         // excludeDriverLogs: ['*'], // pass '*' to exclude all driver session logs
         // excludeDriverLogs: ['bugreport', 'server'],
-        'goog:chromeOptions':{
-            args: ['--headless', '--disable-gpu', '--disable-dev-shm-usage']
-        }
-
+        // 'goog:chromeOptions':{
+        //     args: ['--headless', '--disable-gpu', '--disable-dev-shm-usage']
+        // }
     }],
     //
     // ===================
