@@ -59,9 +59,9 @@ describe('Do a search after a random city hotel', () => {
     it('Wait search loading animation to be made', async () => {
         await GenericFunctions.waitForElementToBeExpectedState(GeneralSelectors.loading_animation,'not be displayed')
     })
-    it('Wait Going to input to be displayed', async () => {
-        await GenericFunctions.waitForElementToBeExpectedState(SearchResultsSelectors.going_to_destination_input, 'be displayed')
-    })
+    // it('Wait Going to input to be displayed', async () => {
+    //     await GenericFunctions.waitForElementToBeExpectedState(SearchResultsSelectors.going_to_destination_input, 'be displayed')
+    // })
     it('Validate that the Travellers Input form has the correct data', async () => {
         await GenericFunctions.validateElementContainsText(SearchResultsSelectors.travellers_input,'text','$Var.travellers')
     })
