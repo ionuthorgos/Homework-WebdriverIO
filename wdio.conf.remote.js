@@ -1,4 +1,7 @@
-
+const drivers = {
+  chrome: { version: '110.0.5481.77' }, // https://chromedriver.chromium.org/
+  firefox: { version: '0.30.0' }, // https://github.com/mozilla/geckodriver/releases
+};
 exports.config = {
   //
   // ====================
@@ -128,8 +131,18 @@ exports.config = {
   // Services take over a specific job you don't want to take care of. They enhance
   // your test setup with almost no effort. Unlike plugins, they don't add new
   // commands. Instead, they hook themselves up into the test process.
-  services: ['sauce', 'intercept'],
-
+  //services: ['sauce', 'intercept'],
+  services: [
+    [
+      'sauce',
+      {
+        installArgs: { drivers }, // drivers to install
+        args: { drivers }, // drivers to use
+      },
+    ]
+    // for network call interception
+    
+  ],
   // Framework you want to run your specs with.
   // The following are supported: Mocha, Jasmine, and Cucumber
   // see also: https://webdriver.io/docs/frameworks
