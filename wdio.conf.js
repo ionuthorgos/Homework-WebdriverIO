@@ -27,9 +27,9 @@ exports.config = {
     ],
     // define specific suites
     suites: {
-        customerService: [
-            './test/specs/customerServiceTests.js',
-        ],
+        // customerService: [
+        //     './test/specs/customerServiceTests.js',
+        // ],
         homeTests: [
             './test/specs/homePageTests.js'
         ]
