@@ -1,7 +1,15 @@
 name: Daily Automation Run
-on: [push, pull_request]
-
+# on: [push, pull_request]
+#   workflow_dispatch:
+#       browser:
+#         description: 'Name of the browser from browser-capabilities-sauce-labs.js'
+#         required: true
+#         default: 'chrome'
+on:
+  push:
+  pull_request:
   workflow_dispatch:
+    inputs:
       browser:
         description: 'Name of the browser from browser-capabilities-sauce-labs.js'
         required: true
