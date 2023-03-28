@@ -76,9 +76,9 @@ exports.config = {
     // 'goog:chromeOptions':{
     //     args: ['--headless', '--disable-gpu', '--disable-dev-shm-usage']
     // }
-    'goog:chromeOptions':{
-        args: ['--disable-gpu', '--disable-dev-shm-usage']
-    }
+    // 'goog:chromeOptions':{
+    //     args: ['--disable-gpu', '--disable-dev-shm-usage']
+    // }
 }],
   //
   // ===================
