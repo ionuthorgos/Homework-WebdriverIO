@@ -8,7 +8,7 @@ jobs:
 build:
  run-automation-tests:
     needs: [start-runner]
-    runs-on: ubuntu-latest
+    runs-on: ${{ needs.start-runner.outputs.label }} # run the job on the newly created runner
     steps:
       - uses: actions/checkout@v3
 
