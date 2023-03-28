@@ -18,7 +18,7 @@ jobs:
 
       - name: Start running automated tests with custom arguments in SauceLabs...
         working-directory: ./
-        run: npm run wdio browser='chrome'
+        run: npm run wdio
 
       - name: Get Allure history
         uses: actions/checkout@v3
