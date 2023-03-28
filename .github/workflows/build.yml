@@ -5,51 +5,46 @@ env:
   SAUCE_ACCESS_KEY: ${{ secrets.SAUCE_ACCESS_KEY }}
 
 jobs:
-
-#  run-automation-tests:
-#     needs: [start-runner]
-#     runs-on: ${{ needs.start-runner.outputs.label }} # run the job on the newly created runner
-build:
-  runs-on: ubuntu-latest
-
+  build:
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+        - uses: actions/checkout@v3
 
-      - name: Installing dependencies
-        working-directory: ./
-        run: npm install
+        - name: Installing dependencies
+          working-directory: ./
+          run: npm install
 
-      - name: Start running automated tests with custom arguments in SauceLabs...
-        working-directory: ./
-        run: npm run wdio
+        - name: Start running automated tests with custom arguments in SauceLabs...
+          working-directory: ./
+          run: npm run wdio
 
-      - name: Get Allure history
-        uses: actions/checkout@v3
-        if: always()
-        continue-on-error: true
-        with:
-          ref: gh-pages
-          path: gh-pages
+        - name: Get Allure history
+          uses: actions/checkout@v3
+          if: always()
+          continue-on-error: true
+          with:
+            ref: gh-pages
+            path: gh-pages
 
-      - name: Allure Report action from marketplace
-        uses: simple-elf/allure-report-action@master
-        if:
-          always()
-          #id: allure-report
-        with:
-          allure_results: allure-results
-          gh_pages: gh-pages
-          allure_report: allure-report
-          allure_history: allure-history
-          keep_reports: 20
+        - name: Allure Report action from marketplace
+          uses: simple-elf/allure-report-action@master
+          if:
+            always()
+            #id: allure-report
+          with:
+            allure_results: allure-results
+            gh_pages: gh-pages
+            allure_report: allure-report
+            allure_history: allure-history
+            keep_reports: 20
 
-      - name: Deploy to GitHub pages
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          folder: allure-history
-          branch: main
-          token: ${{ secrets.GITHUB_TOKEN }}
+        - name: Deploy to GitHub pages
+          uses: JamesIves/github-pages-deploy-action@v4
+          with:
+            folder: allure-history
+            branch: main
+            token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Post the link to the generated Allure Report
-        run: echo "https://github.com/ionuthorgos/Homework-WebdriverIO/${{ github.run_number }}"
-        
+        - name: Post the link to the generated Allure Report
+          run: echo "https://github.com/ionuthorgos/Homework-WebdriverIO/${{ github.run_number }}"
+          
