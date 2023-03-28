@@ -146,13 +146,6 @@
   dependencies:
     "@types/yargs-parser" "*"
 
-"@types/yauzl@^2.9.1":
-  "integrity" "sha512-Cn6WYCm0tXv8p6k+A8PvbDG763EDpBoTzHdA+Q/MF6H3sapGjCm9NzoaJncJS9tUKSuCoDs9XHxYYsQDgxR6kw=="
-  "resolved" "https://registry.npmjs.org/@types/yauzl/-/yauzl-2.10.0.tgz"
-  "version" "2.10.0"
-  dependencies:
-    "@types/node" "*"
-
 "@wdio/cli@^8.3.9":
   "integrity" "sha512-Lt0Yo/oIMRR23mVRVRmGi6k0OvmmMS3LAL3xWpYrhiwXna3LS+7bdFcLixC9cwiI1NlacgLvbvXTr5gJb1XvJQ=="
   "resolved" "https://registry.npmjs.org/@wdio/cli/-/cli-8.3.9.tgz"
@@ -293,7 +286,7 @@
     "easy-table" "^1.2.0"
     "pretty-ms" "^7.0.0"
 
-"@wdio/types@^7.0.0 || ^8.0.0-alpha.219", "@wdio/types@8.3.0":
+"@wdio/types@8.3.0":
   "integrity" "sha512-TTs3ETVOJtooTIY/u2+feeBnMBx2Hb4SEItN31r0pFncn37rnIZXE/buywLNf5wvZW9ukxoCup5hCnohOR27eQ=="
   "resolved" "https://registry.npmjs.org/@wdio/types/-/types-8.3.0.tgz"
   "version" "8.3.0"
@@ -697,7 +690,7 @@
     "is-wsl" "^2.2.0"
     "lighthouse-logger" "^1.0.0"
 
-"chromedriver@*", "chromedriver@^110.0.0":
+"chromedriver@^110.0.0":
   "integrity" "sha512-Le6q8xrA/3fAt+g8qiN0YjsYxINIhQMC6wj9X3W5L77uN4NspEzklDrqYNwBcEVn7PcAEJ73nLlS7mTyZRspHA=="
   "resolved" "https://registry.npmjs.org/chromedriver/-/chromedriver-110.0.0.tgz"
   "version" "110.0.0"
@@ -3136,7 +3129,7 @@
     "ky" "^0.33.0"
     "ws" "^8.8.0"
 
-"webdriverio@^7.0.0 || ^8.0.0-alpha.219", "webdriverio@^8.2.4", "webdriverio@^8.3.9", "webdriverio@8.3.9":
+"webdriverio@^8.2.4", "webdriverio@^8.3.9", "webdriverio@8.3.9":
   "integrity" "sha512-r1fkBs06zqt9UGAlGVK/bGY+mfF/4SBDGTzKQSh+osqSDAtu/heWE2Xwn9CTbbzLlK1HhBVftDhQYEFOmfSvDg=="
   "resolved" "https://registry.npmjs.org/webdriverio/-/webdriverio-8.3.9.tgz"
   "version" "8.3.9"
