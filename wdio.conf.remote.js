@@ -64,7 +64,7 @@ exports.config = {
   // Sauce Labs platform configurator - a great tool to configure your capabilities:
   // https://saucelabs.com/platform/platform-configurator
   //
-  capabilities: [browsersCapabilities[browserName]],
+  capabilities: [browsersCapabilities[firefox]],
 //   capabilities: [{
     
 //     // maxInstances can get overwritten per capability. So if you have an in-house Selenium
