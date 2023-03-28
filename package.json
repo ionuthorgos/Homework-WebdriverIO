@@ -120,7 +120,6 @@
     "fs-constants": "^1.0.0",
     "fs-extra": "^11.1.0",
     "fs.realpath": "^1.0.0",
-    "fsevents": "^2.3.2",
     "function-bind": "^1.1.1",
     "functions-have-names": "^1.2.3",
     "gaze": "^1.1.3",
