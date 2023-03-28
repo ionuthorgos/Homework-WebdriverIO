@@ -6,9 +6,12 @@ env:
 
 jobs:
 
- run-automation-tests:
-    needs: [start-runner]
-    runs-on: ${{ needs.start-runner.outputs.label }} # run the job on the newly created runner
+#  run-automation-tests:
+#     needs: [start-runner]
+#     runs-on: ${{ needs.start-runner.outputs.label }} # run the job on the newly created runner
+build:
+  runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v3
 
