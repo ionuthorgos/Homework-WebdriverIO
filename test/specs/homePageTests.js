@@ -31,9 +31,9 @@ describe('Do a search after a random city hotel', () => {
     //     await GenericFunctions.waitForElementToBeExpectedState(HomeSelectors.accept_all_cookies_button, 'be visible')
     //     await GenericFunctions.clickElement(HomeSelectors.accept_all_cookies_button)
     // })
-    // it('Validate that the default travellers input is 2 travellers 1 room', async () => {
-    //     await GenericFunctions.validateElementContainsText(GeneralSelectors.travellers_button, "text", ['Travellers:', '2 travellers, 1 room'])
-    // })
+    it('Validate that the default travellers input is 2 travellers 1 room', async () => {
+        await GenericFunctions.validateElementContainsText(GeneralSelectors.travellers_button, "text", ['Travellers:', '2 travellers, 1 room'])
+    })
     it('Select randomly from the list a location from Going to', async () => {
         await GenericFunctions.clickElement(GeneralSelectors.going_to_button)
         await GeneralPage.selectRandomLocationGoingTo()
