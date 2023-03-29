@@ -1,7 +1,7 @@
 module.exports = {
   chrome: {
     browserName: 'chrome',
-    browserVersion: 'latest',
+    browserVersion: '^111.0.0',
     platformName: 'macOS 12',
     'goog:chromeOptions': {
       args: [
