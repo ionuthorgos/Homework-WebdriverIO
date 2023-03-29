@@ -28,10 +28,10 @@ exports.config = {
   //
   runner: 'local',
 
-  // user: 'lola.ops.general-saucelabs',
-  user: 'AlexandruRau',
+   user: 'lola.ops.general-saucelabs',
+  // user: 'AlexandruRau',
   // key: 'b293091a-4f5b-4134-8d1a-2a4955347e8e',
-  key: '6760da1b-101d-4cb3-8664-657b3afe73a5',
+   key: '6760da1b-101d-4cb3-8664-657b3afe73a5',
   // region: 'eu',
   region: 'us',
 
@@ -64,28 +64,8 @@ exports.config = {
   // Sauce Labs platform configurator - a great tool to configure your capabilities:
   // https://saucelabs.com/platform/platform-configurator
   //
- capabilities: [browsersCapabilities[chrome]],
-//   capabilities: [{
-    
-//     // maxInstances can get overwritten per capability. So if you have an in-house Selenium
-//     // grid with only 5 firefox instances available you can make sure that not more than
-//     // 5 instances get started at a time.
-//     maxInstances: 5,
-//     //
-//     browserName: 'chrome',
-//     acceptInsecureCerts: true,
-//     // If outputDir is provided WebdriverIO can capture driver session logs
-//     // it is possible to configure which logTypes to include/exclude.
-//     // excludeDriverLogs: ['*'], // pass '*' to exclude all driver session logs
-//     // excludeDriverLogs: ['bugreport', 'server'],
-//     // 'goog:chromeOptions':{
-//     //     args: ['--headless', '--disable-gpu', '--disable-dev-shm-usage']
-//     // }
-//     // 'goog:chromeOptions':{
-//     //     args: ['--disable-gpu', '--disable-dev-shm-usage']
-//     // }
-// }],
-  //
+  capabilities: [browsersCapabilities[chrome]],
+
   // ===================
   // Test Configurations
   // ===================
@@ -133,8 +113,9 @@ exports.config = {
   // Services take over a specific job you don't want to take care of. They enhance
   // your test setup with almost no effort. Unlike plugins, they don't add new
   // commands. Instead, they hook themselves up into the test process.
-  //services: ['sauce', 'intercept'],
-  services: ['sauce', 'intercept'],
+  services: ['selenium-standalone', 'sauce'],
+  // services: ['sauce', 'intercept'],
+  sauceConnect: true,
   // Framework you want to run your specs with.
   // The following are supported: Mocha, Jasmine, and Cucumber
   // see also: https://webdriver.io/docs/frameworks
@@ -172,30 +153,30 @@ exports.config = {
 
   //
   // If you are using Cucumber you need to specify the location of your step definitions.
-//   cucumberOpts: {
-//     // <string[]> (file/dir) require files before executing features
-//     require: ['test/definitions/*.js', 'generic/definitions/*.js'],
-//     // <boolean> show full backtrace for errors
-//     backtrace: false,
-//     // <string[]> ("extension:module") require files with the given EXTENSION after requiring MODULE (repeatable)
-//     requireModule: [],
-//     // <boolean> invoke formatters without executing steps
-//     dryRun: false,
-//     // <boolean> abort the run on first failure
-//     failFast: false,
-//     // <boolean> hide step definition snippets for pending steps
-//     snippets: true,
-//     // <boolean> hide source uris
-//     source: true,
-//     // <boolean> fail if there are any undefined or pending steps
-//     strict: false,
-//     // <string> (expression) only execute the features or scenarios with tags matching the expression
-//     tagExpression: Env.getTagFromCmdLine(),
-//     // <number> timeout for step definitions
-//     timeout: 300000,
-//     // <boolean> Enable this config to treat undefined definitions as warnings.
-//     ignoreUndefinedDefinitions: false,
-//   },
+  //   cucumberOpts: {
+  //     // <string[]> (file/dir) require files before executing features
+  //     require: ['test/definitions/*.js', 'generic/definitions/*.js'],
+  //     // <boolean> show full backtrace for errors
+  //     backtrace: false,
+  //     // <string[]> ("extension:module") require files with the given EXTENSION after requiring MODULE (repeatable)
+  //     requireModule: [],
+  //     // <boolean> invoke formatters without executing steps
+  //     dryRun: false,
+  //     // <boolean> abort the run on first failure
+  //     failFast: false,
+  //     // <boolean> hide step definition snippets for pending steps
+  //     snippets: true,
+  //     // <boolean> hide source uris
+  //     source: true,
+  //     // <boolean> fail if there are any undefined or pending steps
+  //     strict: false,
+  //     // <string> (expression) only execute the features or scenarios with tags matching the expression
+  //     tagExpression: Env.getTagFromCmdLine(),
+  //     // <number> timeout for step definitions
+  //     timeout: 300000,
+  //     // <boolean> Enable this config to treat undefined definitions as warnings.
+  //     ignoreUndefinedDefinitions: false,
+  //   },
 
   //
   // =====
