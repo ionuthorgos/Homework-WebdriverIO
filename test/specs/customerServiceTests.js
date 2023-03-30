@@ -7,9 +7,10 @@ const CustomerServiceSelectors = require('../selectors/customerServiceSelectors.
 
 
 describe('Validate Customer Service URL', () => {
-
-    it('Open the url', async () => {
-        await GeneralPage.openURL(LoginSelectors.url)
+    before(async function () {
+        it('Open the url', async () => {
+            await GeneralPage.openURL(LoginSelectors.url)
+        })
     })
     // it('Click the accept all cookies button', async () => {
     //     await GenericFunctions.waitForElementToBeExpectedState(HomeSelectors.accept_all_cookies_button, 'be visible')
@@ -50,7 +51,7 @@ describe('Validate Customer Service URL', () => {
     it('Validate that the first article toggle is not expanded', async () => {
         await GenericFunctions.waitForElementToBeExpectedState(CustomerServiceSelectors.first_article_expanded, 'be displayed')
         await GenericFunctions.clickElement(CustomerServiceSelectors.first_article_toggle)
-        await GenericFunctions.waitForElementToBeExpectedState(CustomerServiceSelectors.first_article_expanded, 'not be present') 
+        await GenericFunctions.waitForElementToBeExpectedState(CustomerServiceSelectors.first_article_expanded, 'not be present')
     })
 })
 
