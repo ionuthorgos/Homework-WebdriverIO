@@ -5,13 +5,13 @@ const GeneralSelectors = require('../selectors/generalSelectors.json')
 const LoginSelectors = require('../selectors/loginSelectors.json')
 const CustomerServiceSelectors = require('../selectors/customerServiceSelectors.json')
 
+before(async function () {
+    it('Open the url', async () => {
+        await GeneralPage.openURL(LoginSelectors.url)
+    })
+})
 
 describe('Validate Customer Service URL', () => {
-    before(async function () {
-        it('Open the url', async () => {
-            await GeneralPage.openURL(LoginSelectors.url)
-        })
-    })
     // it('Click the accept all cookies button', async () => {
     //     await GenericFunctions.waitForElementToBeExpectedState(HomeSelectors.accept_all_cookies_button, 'be visible')
     //     await GenericFunctions.clickElement(HomeSelectors.accept_all_cookies_button)

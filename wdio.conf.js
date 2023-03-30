@@ -256,9 +256,9 @@ exports.config = {
     // beforeHook: function (test, context) {
     // },
   
-      afterHook: async function(){
-        await browser.reloadSession()
-      }
+      // afterHook: async function(){
+      //   await browser.reloadSession()
+      // }
 
     //   beforeScenario: async function (world, context) {
     //     await browser.maximizeWindow();
