@@ -1,7 +1,3 @@
-// const drivers = {
-//   chrome: { version: '110.0.5481.77' }, // https://chromedriver.chromium.org/
-//   firefox: { version: '0.30.0' }, // https://github.com/mozilla/geckodriver/releases
-// };
 const browsersCapabilities = require('./browser-capabilities-sauce-labs');
 
 exports.config = {
@@ -28,16 +24,25 @@ exports.config = {
   //
   runner: 'local',
 
-   user: 'lola.ops.general-saucelabs',
+  user: 'lola.ops.general-saucelabs',
   // user: 'AlexandruRau',
-   key: 'b293091a-4f5b-4134-8d1a-2a4955347e8e',
-   //key: '6760da1b-101d-4cb3-8664-657b3afe73a5',
-  // region: 'eu',
-  region: 'us',
+  key: 'b293091a-4f5b-4134-8d1a-2a4955347e8e',
+  //key: '6760da1b-101d-4cb3-8664-657b3afe73a5',
+  region: 'eu',
+  //region: 'us',
 
-  specs: ['./test/specs/homePageTests.js'],
+  specs: ['test/specs/customerServiceTests.js'],
+  // define specific suites
+  suites: {
+    customerService: [
+      './test/specs/customerServiceTests.js'
+    ],
+    homeTests: [
+      './test/specs/homePageTests.js'
+    ]
+  },
 
-  maxInstances: 1,
+  maxInstances: 10,
 
   // Patterns to exclude.
   exclude: [
@@ -64,7 +69,7 @@ exports.config = {
   // Sauce Labs platform configurator - a great tool to configure your capabilities:
   // https://saucelabs.com/platform/platform-configurator
   //
-  capabilities: [browsersCapabilities[chrome]],
+  capabilities: [browsersCapabilities['chrome']],
 
   // ===================
   // Test Configurations
@@ -100,11 +105,11 @@ exports.config = {
   baseUrl: 'http://localhost',
   //
   // Default timeout for all waitFor* commands.
-  waitforTimeout: 120000,
+  waitforTimeout: 60000,
   //
   // Default timeout in milliseconds for request
   // if browser driver or grid doesn't send response
-  connectionRetryTimeout: 300000,
+  connectionRetryTimeout: 60000,
   //
   // Default request retries count
   connectionRetryCount: 3,
@@ -113,8 +118,8 @@ exports.config = {
   // Services take over a specific job you don't want to take care of. They enhance
   // your test setup with almost no effort. Unlike plugins, they don't add new
   // commands. Instead, they hook themselves up into the test process.
-  services: ['selenium-standalone', 'sauce'],
-  // services: ['sauce', 'intercept'],
+  // services: ['sauce'],
+  services: ['sauce',],
   sauceConnect: true,
   // Framework you want to run your specs with.
   // The following are supported: Mocha, Jasmine, and Cucumber
@@ -139,18 +144,25 @@ exports.config = {
 
   reporters: [
     'spec',
-    [
-      'allure',
-      {
-        outputDir: 'allure-results',
-        disableWebdriverStepsReporting: true,
-        disableWebdriverScreenshotsReporting: false,
-        useCucumberStepReporter: true,
-        addConsoleLogs: true,
-      },
-    ],
+    // [
+    //   'allure',
+    //   {
+    //     outputDir: 'allure-results',
+    //     disableWebdriverStepsReporting: true,
+    //     disableWebdriverScreenshotsReporting: false,
+    //     useCucumberStepReporter: true,
+    //     addConsoleLogs: true,
+    //   },
+    // ],
   ],
 
+  // Options to be passed to Mocha.
+  // See the full list at http://mochajs.org/
+  mochaOpts: {
+    ui: 'bdd',
+    timeout: 60000,
+    bail: true
+  },
   // =====
   // Hooks
   // =====

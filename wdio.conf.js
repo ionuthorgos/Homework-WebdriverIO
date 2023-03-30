@@ -27,13 +27,13 @@ exports.config = {
     // will be called from there.
     //
     specs: [
-        './test/specs/**/*.js'
+        'test/specs/homePageTests.js'
     ],
     // define specific suites
     suites: {
         customerService: [
-            './test/specs/customerServiceTests.js',
-        ],
+            './test/specs/customerServiceTests.js'
+         ],
         homeTests: [
             './test/specs/homePageTests.js'
         ]
@@ -132,6 +132,7 @@ exports.config = {
     // your test setup with almost no effort. Unlike plugins, they don't add new
     // commands. Instead, they hook themselves up into the test process.
     // services: ['chromedriver'],
+
     services: [
         [
           'selenium-standalone',
@@ -143,6 +144,7 @@ exports.config = {
         // for network call interception
         
       ],
+
     // Framework you want to run your specs with.
     // The following are supported: Mocha, Jasmine, and Cucumber
     // see also: https://webdriver.io/docs/frameworks

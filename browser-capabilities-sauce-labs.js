@@ -1,19 +1,18 @@
 module.exports = {
   chrome: {
     browserName: 'chrome',
-    browserVersion: '^111.0.0',
+    browserVersion: 'latest',
     platformName: 'macOS 12',
+    
     'goog:chromeOptions': {
       args: [
-        '--enable-automation',
-        '--use-fake-ui-for-media-stream',
-        '--use-fake-device-for-media-stream',
-        '--use-file-for-fake-video-capture=/Users/chef/Downloads/btc_qr_address_video.mjpeg',
+        '--enable-automation'
       ],
     },
     acceptInsecureCerts: true,
     'sauce:options': {
       screenResolution: '2048x1536',
+      extendedDebugging: true
     },
   },
 
