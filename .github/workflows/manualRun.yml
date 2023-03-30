@@ -1,12 +1,10 @@
-name: Daily Automation Run
+name: Manual Run 
 
 env:
   SAUCE_USERNAME: ${{ secrets.SAUCE_USERNAME }}
   SAUCE_ACCESS_KEY: ${{ secrets.SAUCE_ACCESS_KEY }}
 
 on:
-  push:
-  pull_request:
   workflow_dispatch:
     inputs:
       browser:
