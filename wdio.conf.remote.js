@@ -144,15 +144,15 @@ exports.config = {
 
   reporters: [
     'spec',
-    [
-      'allure',
-      {
-        outputDir: 'allure-results',
-        disableWebdriverStepsReporting: true,
-        disableWebdriverScreenshotsReporting: false,
-        addConsoleLogs: true,
-      },
-    ],
+    // [
+    //   'allure',
+    //   {
+    //     outputDir: 'allure-results',
+    //     disableWebdriverStepsReporting: true,
+    //     disableWebdriverScreenshotsReporting: false,
+    //     addConsoleLogs: true,
+    //   },
+    // ],
   ],
 
   // Options to be passed to Mocha.
