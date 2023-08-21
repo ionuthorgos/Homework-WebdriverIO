@@ -1,20 +1,9 @@
 {
-  "devDependencies": {
-    "@wdio/cli": "^8.3.9",
-    "@wdio/local-runner": "^8.3.9",
-    "@wdio/mocha-framework": "^8.3.0",
-    "@wdio/selenium-standalone-service": "^8.6.8",
-    "@wdio/spec-reporter": "^8.3.0",
-    "chai": "^4.3.7",
-    "chromedriver": "^111.0.0",
-    "mocha-tags": "^1.0.1",
-    "wdio-chromedriver-service": "^8.1.1",
-    "webdriverio": "^8.3.9"
-  },
   "scripts": {
     "test": "wdio run wdio.conf.js",
     "remote": "wdio run wdio.conf.remote.js",
-    "type": "module"
+    "type": "module",
+    "wdio": "wdio run ./wdio.conf.js"
   },
   "name": "homework-webdriverio",
   "description": "install webdriverIO",
@@ -55,6 +44,7 @@
     "call-bind": "^1.0.2",
     "camelcase": "^6.3.0",
     "camelcase-keys": "^3.0.0",
+    "chai": "^4.3.7",
     "chai-webdriverio-async": "^2.7.0",
     "chalk": "^4.1.2",
     "chardet": "^0.7.0",
@@ -375,5 +365,11 @@
   "bugs": {
     "url": "https://github.com/ionuthorgos/Homework-WebdriverIO/issues"
   },
-  "homepage": "https://github.com/ionuthorgos/Homework-WebdriverIO#readme"
+  "homepage": "https://github.com/ionuthorgos/Homework-WebdriverIO#readme",
+  "devDependencies": {
+    "@wdio/cli": "^8.15.5",
+    "@wdio/local-runner": "^8.15.4",
+    "@wdio/mocha-framework": "^8.15.4",
+    "@wdio/spec-reporter": "^8.15.0"
+  }
 }

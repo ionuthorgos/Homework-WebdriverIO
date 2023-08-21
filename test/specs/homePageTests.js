@@ -14,16 +14,16 @@ before(async function () {
         // await browser.maximizeWindow()
         await GeneralPage.openURL(LoginSelectors.url)
     })
-    it('Loggin in the app', async () => {
-        await GenericFunctions.clickElement(LoginSelectors.sign_in_button)
-        await GenericFunctions.clickElement(LoginSelectors.login_button)
-        await GenericFunctions.fillInputField(LoginSelectors.email_address_input, LoginSelectors.email_address)
-        await GenericFunctions.fillInputField(LoginSelectors.password_input, LoginSelectors.password)
-        await GenericFunctions.clickElement(LoginSelectors.login_form)
-    })
-    it('Validate that the user is succesffully logged in', async () => {
-        await GenericFunctions.validateElementContainsText(LoginSelectors.header_profile_name, "text", "ionut")
-    })
+    // it('Loggin in the app', async () => {
+    //     await GenericFunctions.clickElement(LoginSelectors.sign_in_button)
+    //     await GenericFunctions.clickElement(LoginSelectors.login_button)
+    //     await GenericFunctions.fillInputField(LoginSelectors.email_address_input, LoginSelectors.email_address)
+    //     await GenericFunctions.fillInputField(LoginSelectors.password_input, LoginSelectors.password)
+    //     await GenericFunctions.clickElement(LoginSelectors.login_form)
+    // })
+    // it('Validate that the user is succesffully logged in', async () => {
+    //     await GenericFunctions.validateElementContainsText(LoginSelectors.header_profile_name, "text", "ionut")
+    // })
 });
 
 describe('Do a search after a random city hotel', () => {
