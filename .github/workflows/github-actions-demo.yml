@@ -14,9 +14,9 @@ jobs:
           node-version: '16'
 
       - name: Installing dependencies
-          # working-directory: ./
-          run: yarn
+        working-directory: ./
+        run: yarn
 
       - name: Start running automated tests with custom arguments in SauceLabs...
-          # working-directory: ./
-          run: yarn remote 
+        working-directory: ./
+        run: yarn remote 
