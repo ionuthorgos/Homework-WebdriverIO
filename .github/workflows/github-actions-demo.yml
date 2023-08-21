@@ -39,4 +39,4 @@ jobs:
         run: yarn
 
       - name: Start running automated tests
-        run: yarn remote
+        run: yarn wdio wdio.conf.js --suite customerService
