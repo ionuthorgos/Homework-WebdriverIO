@@ -34,9 +34,12 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: '16'
+      - name: Install Chrome
+        run: apt update && apt upgrade && wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb && ndpkg -i google-chrome-stable_current_amd64.deb
 
       - name: Installing dependencies
         run: yarn
 
       - name: Start running automated tests
         run: yarn wdio wdio.conf.js --suite customerService
+
