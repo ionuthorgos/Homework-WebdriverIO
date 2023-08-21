@@ -35,7 +35,7 @@ jobs:
         with:
           node-version: '16'
       - name: Install Chrome
-        run: apt update && apt upgrade && wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb && ndpkg -i google-chrome-stable_current_amd64.deb
+        run: sudo apt update && sudo apt upgrade && wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb && sudo ndpkg -i google-chrome-stable_current_amd64.deb
 
       - name: Installing dependencies
         run: yarn
