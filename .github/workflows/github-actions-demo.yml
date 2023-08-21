@@ -1,5 +1,8 @@
 name: learn-github-actions
-run-name: ${{ github.actor }} is learning GitHub Actions
+env:
+  SAUCE_USERNAME: ${{ secrets.SAUCE_USERNAME }}
+  SAUCE_ACCESS_KEY: ${{ secrets.SAUCE_ACCESS_KEY }}
+
 on: [push]
 jobs:
   check-bats-version:
@@ -9,5 +12,11 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: '14'
-      - run: npm install -g bats
-      - run: bats -v
+
+      - name: Installing dependencies
+          working-directory: ./
+          run: yarn
+
+      - name: Start running automated tests with custom arguments in SauceLabs...
+          working-directory: ./
+          run: yarn remote 
