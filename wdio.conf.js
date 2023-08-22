@@ -62,7 +62,7 @@ exports.config = {
     capabilities: [{
         browserName: 'chrome',
         'goog:chromeOptions': {
-            args: ['disabled']
+            args: ['--headless', '--disable-gpu', '--no-sandbox', '--window-size=1920,1080']
         }
     }],
 

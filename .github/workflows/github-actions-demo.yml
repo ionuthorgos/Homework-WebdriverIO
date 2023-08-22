@@ -39,7 +39,7 @@ jobs:
 
       - name: Installing dependencies
         run: yarn
-
+ 
       - name: Start running automated tests
         run: yarn wdio wdio.conf.js --suite customerService
 
