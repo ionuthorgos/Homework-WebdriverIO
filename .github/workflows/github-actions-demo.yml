@@ -34,9 +34,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: '16'
-      - name: Install Chrome
-        run: sudo apt update && sudo apt upgrade && sudo apt install dpkg && wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb && sudo dpkg -i google-chrome-stable_current_amd64.deb 
-
+          
       - name: Installing dependencies
         run: yarn
  
